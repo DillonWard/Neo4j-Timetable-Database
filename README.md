@@ -47,9 +47,7 @@ Graph databases are significantly simpler and are more expressive than relationa
 ### Planning
 The data needed for this project included information to be extracted from our timetabling system. Rather than reading out the timetable and manually inputting each day, I scraped all the data from our timetable by viewing in a list view (to make it easier to extract), viewed the page source and copy/pasted all the information relevant. I only used the third year Software Development Semester 2 timetable, but other timetables can be remade into a Graph Database. Since they start with their Department and Course, other timetables are made by adding a Course or Department node, then similar Nodes and Relationships from the already existing Database can be used the same way, or new ones added. Eventually the nodes narrow down from Department and course, to semester and Modules, and finally rooms and days.
 For the initial design of the nodes, I thought it would be best to start off as broad as possible, eventually narrowing down as the nodes went along, so that the nodes could be read almost like English.
-
 `(software)-[SEMESTER]->(6)->[HAS_MODULE]->(Graph Theory)->[TAUGHT_BY]->(Ian McLoughlin)`
-
 
 ### Design
 #### Nodes
@@ -63,9 +61,9 @@ The semester Node represents the semester of the course. Each year has 2 semeste
 `MATCH (a:Semester), (b:Module)
 WHERE b.name IN a.modules
 CREATE (a)-[HAS_MODULE]->(b)`
-![alt tag](http://image.prntscr.com/image/1c6ae5b5da994afe913f574264c346af.png)
-
 *This connectects each Node where the name of the Module is inside the array of Modules in the Semester Nodes*.
+
+![alt tag](http://image.prntscr.com/image/1c6ae5b5da994afe913f574264c346af.png)
 
 ##### Module
 In Semester 6, there are 6 Module Nodes. These represent the Modules/Subjects that are on that particular semester. Each Module node has a `name` and `lecturer` property. Some Modules may have more than 1 lecturer. The lecturer property is to connect all the Lecturers to their modules in 1 query.
@@ -73,9 +71,9 @@ In Semester 6, there are 6 Module Nodes. These represent the Modules/Subjects th
 `MATCH (a:Module), (b:Lecturer)
 WHERE b.name IN a.lecturer
 CREATE (a)-[TAUGHT_BY]->(b)`
+*When the Module Lecturer property contains a lecturers name, create a relationship*
 ![alt tag](http://image.prntscr.com/image/579a8540adbb4853903fb4e19aa32978.png)
 
-*When the Module Lecturer property contains a lecturers name, create a relationship*
 ##### Lecturer
 The Lecturer Node represents the Lecturers, and are connected to the module that they teach. Each lecturer has a `name` property.
 ##### Room
@@ -85,10 +83,28 @@ The Room nodes represent the rooms that each of the Modules are taught in. Each 
 
 ##### Days
 The days node represents the day that a room is in use. Each Day has a `day` property, and are connected to rooms. Their relationship the time the room is in use. 
-
 `(On this Day)-[AT THIS TIME]->(This room is in use)`
 
 #### Relationships
+##### DEPARTMENT
+The `DEPARTMENT` relationship connects the Department and Course. This relationship is a representaiton of how the course Software is in the Science department.
+`(Software)-[DEPARTMENT]->(Science)`
+##### SEMESTER
+The `SEMESTER` relationship connects the semester and the course. The purpose of the `SEMESTER` relationship is to display which semester of which course is being displayed. I decided to make another node for the semester instead of it being a relationship so the student can specify which semester they want, or if they want to add another semester they can do so.
+`(Software)-[SEMESTER]->(6)`
+
+##### HAS_MODULE
+The `HAS_MODULE` relationship shows which Modules are on a particular semester. If a module is on a particular semester, they are connected.
+`(6)-[HAS_MODULE]->(Graph Theory)`
+
+##### TAUGHT_BY
+The `TAUGHT_BY` relationship is a connection between a Module Node and a Lecturer Node. These relationships show which modules are taught by which lecturers.
+`(Graph Theory)-[TAUGHT_BY]->(Ian McLoughlin)`
+
+##### GROUP
+The `GROUP` relationship is a representation of which Group is in a Room and what Module they have. The relationship is a connection between Module and the room the module is in. The caption for the relationship is changed to the property `group` for clarity.
+##### START_TIME
+The `START_TIME` relationship is a representation of the time that a module is on in a particular room. The nodes connected are the day and room nodes. The caption for the relationship is changed to the property `time` for clarity.
 
 #### Properties
 #### Queries
