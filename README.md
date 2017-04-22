@@ -150,13 +150,50 @@ CREATE (a)-[START_TIME {time: '9:00'}]->(b)
 ![alt tag](http://image.prntscr.com/image/bd14a9e6d6e44f6f922209a7f16c98a1.png)
 
 #### Retrieve
+To retrieve everything:
+```
+MATCH (n)
+RETURN n
+```
+You can retrieve specific nodes:
+```
+MATCH (n:Modules)
+RETURN n
+```
+You can also return specific Nodes with specific properties:
+```
+MATCH (n:Modules {module: "Graph Theory"})
+RETURN n
+```
+A user can retrieve the timetable for a specifc day too:
+```
+MATCH (a:Day{day: "Tuesday"})-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
+RETURN a,b,c,r,t
+```
+To return all the modules a group has on a specific day. The `All` is used if it is a lecture, in which all groups go to. Otherwise, it's a lab. To call everything group C has on a Wednesday:
+```
+MATCH (a:Day{day: "Wednesday"})-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
+WHERE t.group = "Group C" OR t.group = "All"
+RETURN a,b,c,r,t
+```
+![alt tag](http://image.prntscr.com/image/c1bad5c63ba5446b92672fb5b3849ddc.png)
+
+To return the only the labs a group has, remove `OR t.group = "All"`. :
+```
+MATCH (a:Day{day: "Wednesday"})-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
+WHERE t.group = "Group C"
+RETURN a,b,c,r,t
+```
+![alt tag](http://image.prntscr.com/image/f797b7941f864af8abbd1c4c633c1774.png)
 
 #### Update
 
-### Delete
+#### Delete
 
 ---
 ### References
 [Why Graph Databases](https://neo4j.com/why-graph-databases/)
+
 [Documentation](http://neo4j.com/docs/developer-manual/current/)
+
 [GMIT Timetable](https://timetable.gmit.ie/)
