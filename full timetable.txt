@@ -1,0 +1,294 @@
+
+Monday
+
+KSOFG73 GRAPH THEORY Gr A/P
+P
+9:00
+10:00
+1:00
+22-26
+0145
+Ian Mcloughlin
+
+
+KSOFG73/KBDIG73 Database Mgmt Sys/L
+L
+10:00
+11:00
+1:00
+22-33, 36
+0994
+Deirdre, O'Donovan
+
+
+KSOFG73 MOBILE APPS/L
+L
+12:00
+14:00
+2:00
+22-33, 36
+0223
+Damien, Costello
+
+
+KSOFG73 GRAPH THEORY Gr A/P
+P
+14:00
+15:00
+1:00
+27-33, 36
+PF05
+Ian Mcloughlin
+
+
+KSOFG73 Software Testing Gr A/P
+P
+16:00
+18:00
+2:00
+22-33, 36
+0481 CR4
+Martin Hynes
+
+
+KSOFG73 SERVER SIDE RAD Gr C/P
+P
+16:00
+18:00
+2:00
+22-33, 36
+0436 CR5 Projects/Media
+Gerard Harrison
+
+
+
+
+
+Tuesday
+
+KSOFG73 Software Testing Gr C/P
+P
+9:00
+11:00
+2:00
+22-33, 36
+0436 CR5 Projects/Media
+Martin Hynes
+
+
+KSOFG73 Database Mgmt Systems Gr A/P
+P
+9:00
+11:00
+2:00
+22-33, 36
+0481 CR4
+Patrick Mannion
+
+
+KSOFG73 MOBILE APPS Gr A/P
+P
+11:00
+13:00
+2:00
+22-33, 36
+0470 Computing Practical Lab
+Damien, Costello
+
+
+KSOFG73 Database Mgmt Systems Gr C/P
+P
+11:00
+13:00
+2:00
+30-33, 36
+0482 CR3
+Deirdre, O'Donovan
+
+
+KSOFG73 GRAPH THEORY Gr B/P
+P
+12:00
+13:00
+1:00
+22-33, 36
+0379
+Ian Mcloughlin
+
+
+KSOFG73 Software Testing Gr B/P
+P
+14:00
+16:00
+2:00
+22-33, 36
+0436 CR5 Projects/Media
+Martin Hynes
+
+
+KSOFG73 SERVER SIDE RAD Gr B/P
+P
+16:00
+18:00
+2:00
+22-33, 36
+0436 CR5 Projects/Media
+Gerard Harrison
+
+
+
+
+
+Wednesday
+
+KSOFG73 GRAPH THEORY Gr C/P
+P
+9:00
+10:00
+1:00
+22-33, 36
+0162
+Ian Mcloughlin
+
+
+KSOFG73 GRAPH THEORY/L
+L
+10:00
+11:00
+1:00
+22-33, 36
+0938
+Ian Mcloughlin
+
+
+KSOFG73 PROFESSIONAL PRACTICE IN IT/L
+L
+11:00
+12:00
+1:00
+22-33, 36
+0208
+Damien, Costello
+
+
+KSOFG73 SERVER SIDE RAD/L
+L
+13:00
+14:00
+1:00
+22-33, 36
+0997
+Gerard Harrison
+
+
+KSOFG73 Software Testing/L
+L
+14:00
+15:00
+1:00
+22-33, 36
+0994
+Naomi, Regan - Hurley
+
+
+KSOFG73/KCDMG84 Software Testing/lL
+L
+15:00
+16:00
+1:00
+22-33, 36
+0939
+Martin Hynes
+
+
+KSOFG73/KBDIG73 Database Mgmt Sys/L
+L
+16:00
+17:00
+1:00
+22-33, 36
+0995
+Deirdre, O'Donovan
+
+
+
+
+
+Thursday
+
+KSOFG73 MOBILE APPS Gr B/P
+P
+9:00
+11:00
+2:00
+22-33, 36
+PF18
+Damien, Costello
+
+
+KSOFG73 MOBILE APPS Gr C/P
+P
+11:00
+13:00
+2:00
+22-33, 36
+PF18
+Damien, Costello
+
+
+KSOFG73 Database Mgmt Systems Gr C/P
+P
+14:00
+16:00
+2:00
+22-29
+0483 CR2
+Deirdre, O'Donovan
+
+
+KSOFG73 SERVER SIDE RAD Gr A/P
+P
+14:00
+16:00
+2:00
+22-33, 36
+0436 CR5 Projects/Media
+Gerard Harrison
+
+
+
+
+
+Friday
+
+KSOFG73 Database Mgmt Systems Gr B/P
+P
+9:00
+11:00
+2:00
+22-33, 36
+0482 CR3
+Deirdre, O'Donovan
+
+
+KSOFG73 GRAPH THEORY/L
+L
+11:00
+12:00
+1:00
+22-33, 36
+0208
+Ian Mcloughlin
+
+
+KSOFG73 SERVER SIDE RAD/P
+P
+16:00
+18:00
+2:00
+32
+0484 CR1,0483 CR2,0436 CR5 Projects/Media
+Gerard Harrison
+
+
+
