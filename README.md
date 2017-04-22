@@ -241,3 +241,7 @@ This will delete the relationship between the Semester and Mobile Apps module on
 [Documentation](http://neo4j.com/docs/developer-manual/current/)
 
 [GMIT Timetable](https://timetable.gmit.ie/)
+
+[How to Delete Relationships](http://www.quackit.com/neo4j/tutorial/neo4j_delete_a_relationship_using_cypher.cfm)
+
+[Delete Nodes using Cypher](http://www.quackit.com/neo4j/tutorial/neo4j_delete_a_node_using_cypher.cfm)
