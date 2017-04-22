@@ -43,6 +43,7 @@ Graph databases are significantly simpler and are more expressive than relationa
 2. Responsiveness: Neo4j is very effecient at managing data.
 3. Flexible/Scalable: Graph Databases are flexible and scalable in that a team could add to an existing graph without endangering its current functionality.
 
+---
 ## Implementation
 ### Planning
 The data needed for this project included information to be extracted from our timetabling system. Rather than reading out the timetable and manually inputting each day, I scraped all the data from our timetable by viewing in a list view (to make it easier to extract), viewed the page source and copy/pasted all the information relevant. I only used the third year Software Development Semester 2 timetable, but other timetables can be remade into a Graph Database. Since they start with their Department and Course, other timetables are made by adding a Course or Department node, then similar Nodes and Relationships from the already existing Database can be used the same way, or new ones added. Eventually the nodes narrow down from Department and course, to semester and Modules, and finally rooms and days.
@@ -71,6 +72,7 @@ In Semester 6, there are 6 Module Nodes. These represent the Modules/Subjects th
 `MATCH (a:Module), (b:Lecturer)
 WHERE b.name IN a.lecturer
 CREATE (a)-[TAUGHT_BY]->(b)`
+
 *When the Module Lecturer property contains a lecturers name, create a relationship*
 ![alt tag](http://image.prntscr.com/image/579a8540adbb4853903fb4e19aa32978.png)
 
@@ -106,7 +108,55 @@ The `GROUP` relationship is a representation of which Group is in a Room and wha
 ##### START_TIME
 The `START_TIME` relationship is a representation of the time that a module is on in a particular room. The nodes connected are the day and room nodes. The caption for the relationship is changed to the property `time` for clarity.
 
-#### Properties
-#### Queries
+---
+## Queries
+### CRUD
+CRUD are the four basic functions of storage in a database. CRUD Operations allow for Creating, Retrieving, Updating, and Deleting of Nodes, Properties and Relationships.
+#### Create
+To create a single Node:
+```
+CREATE (n)
+```
+This creates a Node with no properties. You can create multiples of these Nodes at once. You can create a Node with Multiple labels:
+```
+CREATE (n:Person:Irish)
+```
+Now there are Nodes with multiple labels. If we wanted to create a Node with properties:
+```
+CREATE(n:Person {name: 'Dillon'})
+```
+This Node is now of Label `Person` with the property `name: 'Dillon'`. You can also create a Node with an array of properties:
+```
+CREATE(n:Semester {modules: ["Graph Theory", "Mobile Apps"]})
+```
+Now that we have Nodes, we want to make some relationships between them.
+```
+MATCH (a:Person), (b:Module)
+CREATE (a)-[HAS]->(b)
+```
+This creates relationships between all the `Person` and `Module` nodes. We can also add conditions to the creation of properties.
+```
+MATCH (a:Person), (b:Module)
+WHERE a.name = 'Dillon' AND b.module = 'Graph Theory'
+CREATE (a)-[HAS]->(b)
+```
+This query creates relationships between all the Nodes with the properties `name: 'Dillon'` and `module: 'Graph Theory'`.
+Relationships can also have properties. To create a relationship with properties:
+```
+MATCH (a:Room), (b:Module)
+WHERE a.room = '0379' AND b.module = 'Graph Theory'
+CREATE (a)-[START_TIME {time: '9:00'}]->(b)
+```
+![alt tag](http://image.prntscr.com/image/bd14a9e6d6e44f6f922209a7f16c98a1.png)
 
+#### Retrieve
+
+#### Update
+
+### Delete
+
+---
 ### References
+[Why Graph Databases](https://neo4j.com/why-graph-databases/)
+[Documentation](http://neo4j.com/docs/developer-manual/current/)
+[GMIT Timetable](https://timetable.gmit.ie/)
