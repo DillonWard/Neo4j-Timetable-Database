@@ -172,23 +172,67 @@ RETURN a,b,c,r,t
 ```
 To return all the modules a group has on a specific day. The `All` is used if it is a lecture, in which all groups go to. Otherwise, it's a lab. To call everything group C has on a Wednesday:
 ```
-MATCH (a:Day{day: "Wednesday"})-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
-WHERE t.group = "Group C" OR t.group = "All"
-RETURN a,b,c,r,t
+MATCH (a:Day{day: "Wednesday"})-[t:START_TIME]->(b:Room)-[g:GROUP]->(c:Module)
+WHERE g.group = "Group C" OR g.group = "All"
+RETURN a,b,c,g,t
 ```
 ![alt tag](http://image.prntscr.com/image/c1bad5c63ba5446b92672fb5b3849ddc.png)
 
 To return the only the labs a group has, remove `OR t.group = "All"`. :
 ```
-MATCH (a:Day{day: "Wednesday"})-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
-WHERE t.group = "Group C"
-RETURN a,b,c,r,t
+MATCH (a:Day{day: "Wednesday"})-[t:START_TIME]->(b:Room)-[g:GROUP]->(c:Module)
+WHERE g.group = "Group C"
+RETURN a,b,c,g,t
 ```
 ![alt tag](http://image.prntscr.com/image/f797b7941f864af8abbd1c4c633c1774.png)
 
 #### Update
+You can update existing nodes or relationships with the `SET` keyword.
+To change a node:
+```
+MATCH (a:Module {module: "Graph T"})
+SET a.module = "Graph Theory"
+RETURN a
+```
+To change a relationship:
+```
+MATCH (a:Day{day: "Wednesday"})-[t:START_TIME]->(b:Room)-[g:GROUP{group: 'Group C'}]->(c:Module)
+SET g.group = 'Group A'
+RETURN a,b,c,g,t
+```
 
 #### Delete
+You can `DELETE` instead of returning. To delete Module nodes:
+```
+MATCH (a:Module) 
+DELETE a
+```
+You can also delete module nodes with specific properties:
+```
+MATCH (a:Module{name: 'Graph Theory'}) 
+DELETE a
+```
+If a node is in a relationship, you have to detach it before deleting it:
+```
+MATCH (a:Module) 
+DETACH DELETE a
+```
+You can delete specific relationships too. To delete the `HAS_MODULE` relationship:
+```
+MATCH ()-[r:HAS_MODULE]-() 
+DELETE r
+```
+You can also specify the Nodes in the relationship that you can to delete:
+```
+MATCH (:Semester)-[r:HAS_MODULE]-(Module) 
+DELETE r
+```
+You can be even more specific. If you like, you can delete nodes with specific properties. To do so:
+```
+MATCH (:Semester {semester: '6'})-[r:HAS_MODULE]-(Module {module: 'Mobile Apps'}) 
+DELETE r
+```
+This will delete the relationship between the Semester and Mobile Apps module only.
 
 ---
 ### References
