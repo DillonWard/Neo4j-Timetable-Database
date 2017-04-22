@@ -7,15 +7,15 @@ The following repository contains a Neo4j Database for a third-year undergraduat
 ## Project Overview
 ### Specifications
 The purpose of this project is to design a Neo4j database that displays data taken from the [GMIT Timetable](https://timetable.gmit.ie/) such as student groups, classrooms, lecturers, and work hours for a timetabling system such as the one used in GMIT. The database should contain nodes with data properties and the relationships between them. 
-### Neo4j
-##### Getting Started
+## Neo4j
+### Getting Started
 To begin using Neo4j, you need to download it from [here](https://neo4j.com/download/) and follow the installation instructions. After it has been installed, start your database from the launcher application and head over to `http://localhost:7474` in your browser to begin.
-###### What is Neo4j?
+### What is Neo4j?
 [Neo4j](https://neo4j.com/) is an open source NoSQL graph database management system that allows users to create a graph database that uses Nodes to display and describe information and the relationship between them. Nodes are connected entities that represent Data, and can contain properties or Metadata - data that describes other data. For example, the Node `Person` could have a property `name: 'Dillon'`. Each node can also have one or many relationships with other nodes. When 2 nodes are related, their relationship will have a label which describes why they are related. Neo4j is used by querying the database using the query language Cypher.
 `MATCH (a:Lecturer), (b:Module) RETURN a, b`
 ![alt tag](http://image.prntscr.com/image/2abf401380b54418a61a586953d68a8b.png)
 *Here, we can see the Nodes Lecturer and Module being queried, as well as how they are related.*
-##### Cypher
+### Cypher
 Cypher is a graph query language that allows efficient querying and updating. Cypher allows for complicated databases to be expressed and queried easily, making it a powerful language. Cypher mainly focuses on what to retrieve from a database, not how to retrieve. 
 Cypher's syntax uses keywords, such as:
 * `MATCH`: The graph pattern to match. This is the most common way to get data from the graph.
@@ -29,7 +29,7 @@ RETURN a,b,c,r,t`
 
 With this, you are returning the Day, Room, and Module with the Group and Start Time being the relationships.
 ![alt tag](http://image.prntscr.com/image/7717a6c553af4d9b8ecc66f1114b4cb8.png)
-###### Why use Neo4j?
+### Why use Neo4j?
 Neo4j uses graphs and labels to represent data and relationships. With these graphical representations of data, we can have several types of graphs. Including:
 * Undirected Graphs: Nodes and relationships are interchangable and relationships can be interpreted any way.
 * Directed Graphs: Nodes and relationships are not bidirectional.
@@ -42,16 +42,52 @@ Graph databases are significantly simpler and are more expressive than relationa
 2. Responsiveness: Neo4j is very effecient at managing data.
 3. Flexible/Scalable: Graph Databases are flexible and scalable in that a team could add to an existing graph without endangering its current functionality.
 
-### Implementation
-##### Planning
+## Implementation
+### Planning
 The data needed for this project included information to be extracted from our timetabling system. Rather than reading out the timetable and manually inputting each day, I scraped all the data from our timetable by viewing in a list view (to make it easier to extract), viewed the page source and copy/pasted all the information relevant. I only used the third year Software Development Semester 2 timetable, but other timetables can be remade into a Graph Database. Since they start with their Department and Course, other timetables are made by adding a Course or Department node, then similar Nodes and Relationships from the already existing Database can be used the same way, or new ones added. Eventually the nodes narrow down from Department and course, to semester and Modules, and finally rooms and days.
 For the initial design of the nodes, I thought it would be best to start off as broad as possible, eventually narrowing down as the nodes went along, so that the nodes could be read almost like English.
 
 `(software)-[SEMESTER]->(6)->[HAS_MODULE]->(Graph Theory)->[TAUGHT_BY]->(Ian McLoughlin)`
 
 
-##### Design
+### Design
+#### Nodes
+##### Department
+The Department node is the root node. This node has the property `name: 'Science'`. Each course is part of a certain department, and each department has multiple courses in them. Another Node that is in the Science department can be connected to this Node to create another timetable.
+##### Course
+The course Node represents the course that the timetable is taken from. The timetable used is Semester 2, Year 3 of Software Development. The course node has the property `name: 'Software Development'`. Another of these nodes can be added if you wanted to add another timetable, presumably in the same department.
+##### Semester
+The semester Node represents the semester of the course. Each year has 2 semesters, so year 3 of software development semester 2 has the property `semester: '6'`. The semester node also has `Module` properties, containing an array of the modules that semester has, making it easier to create relationships with other nodes with 1 query.
 
-##### Queries
+`MATCH (a:Semester), (b:Module)
+WHERE b.name IN a.modules
+CREATE (a)-[HAS_MODULE]->(b)`
+![alt tag](http://image.prntscr.com/image/1c6ae5b5da994afe913f574264c346af.png)
+*This connectects each Node where the name of the Module is inside the array of Modules in the Semester Nodes*.
+
+##### Module
+In Semester 6, there are 6 Module Nodes. These represent the Modules/Subjects that are on that particular semester. Each Module node has a `name` and `lecturer` property. Some Modules may have more than 1 lecturer. The lecturer property is to connect all the Lecturers to their modules in 1 query.
+
+`MATCH (a:Module), (b:Lecturer)
+WHERE b.name IN a.lecturer
+CREATE (a)-[TAUGHT_BY]->(b)`
+![alt tag](http://image.prntscr.com/image/579a8540adbb4853903fb4e19aa32978.png)
+*When the Module Lecturer property contains a lecturers name, create a relationship*
+##### Lecturer
+The Lecturer Node represents the Lecturers, and are connected to the module that they teach. Each lecturer has a `name` property.
+##### Room
+The Room nodes represent the rooms that each of the Modules are taught in. Each room is connected to a module and the day that room is in use. The rooms are connected to Modules, and their relationships are the representations of which group has that module at that time. Rooms are connected to the Day and their relationship represents the Timeslot on that day.
+
+![alt tag](http://image.prntscr.com/image/7a577189b72145aab1e4e1d480e70da7.png)
+
+##### Days
+The days node represents the day that a room is in use. Each Day has a `day` property, and are connected to rooms. Their relationship the time the room is in use. 
+
+`(On this Day)-[AT THIS TIME]->(This room is in use)`
+
+#### Relationships
+
+#### Properties
+#### Queries
 
 ### References
