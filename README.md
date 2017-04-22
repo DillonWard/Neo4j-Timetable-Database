@@ -26,5 +26,20 @@ If you were to run a query on the database using these clauses to see what class
 `MATCH (a:Day)-[r:START_TIME]->(b:Room)-[t:GROUP]->(c:Module)
 WHERE a.day = "Monday"
 RETURN a,b,c,r,t`
+
 With this, you are returning the Day, Room, and Module with the Group and Start Time being the relationships.
 ![alt tag](http://image.prntscr.com/image/7717a6c553af4d9b8ecc66f1114b4cb8.png)
+##### Why use Neo4j?
+Neo4j uses graphs and labels to represent data and relationships. With these graphical representations of data, we can have several types of graphs. Including:
+* Undirected Graphs: Nodes and relationships are interchangable and relationships can be interpreted any way.
+* Directed Graphs: Nodes and relationships are not bidirectional.
+* Graphs with Weight: Graphs with numerical assessment.
+* Graphs with Labels: Graphs with vertices that are defined by their lables
+* Property Graphs: A weighted graph with labels
+
+Graph databases are significantly simpler and are more expressive than relational databases. They have many other benefits, such as:
+1. Performance: Graph Databases perform better than relational databases. Even though data queries increase, the performance does not drop.
+2. Responsiveness: Neo4j is very effecient at managing data.
+3. Flexible/Scalable: Graph Databases are flexible and scalable in that a team could add to an existing graph without endangering its current functionality.
+
+
