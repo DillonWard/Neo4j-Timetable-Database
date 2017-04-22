@@ -14,6 +14,7 @@ To begin using Neo4j, you need to download it from [here](https://neo4j.com/down
 [Neo4j](https://neo4j.com/) is an open source NoSQL graph database management system that allows users to create a graph database that uses Nodes to display and describe information and the relationship between them. Nodes are connected entities that represent Data, and can contain properties or Metadata - data that describes other data. For example, the Node `Person` could have a property `name: 'Dillon'`. Each node can also have one or many relationships with other nodes. When 2 nodes are related, their relationship will have a label which describes why they are related. Neo4j is used by querying the database using the query language Cypher.
 `MATCH (a:Lecturer), (b:Module) RETURN a, b`
 ![alt tag](http://image.prntscr.com/image/2abf401380b54418a61a586953d68a8b.png)
+
 *Here, we can see the Nodes Lecturer and Module being queried, as well as how they are related.*
 ### Cypher
 Cypher is a graph query language that allows efficient querying and updating. Cypher allows for complicated databases to be expressed and queried easily, making it a powerful language. Cypher mainly focuses on what to retrieve from a database, not how to retrieve. 
@@ -63,6 +64,7 @@ The semester Node represents the semester of the course. Each year has 2 semeste
 WHERE b.name IN a.modules
 CREATE (a)-[HAS_MODULE]->(b)`
 ![alt tag](http://image.prntscr.com/image/1c6ae5b5da994afe913f574264c346af.png)
+
 *This connectects each Node where the name of the Module is inside the array of Modules in the Semester Nodes*.
 
 ##### Module
@@ -72,6 +74,7 @@ In Semester 6, there are 6 Module Nodes. These represent the Modules/Subjects th
 WHERE b.name IN a.lecturer
 CREATE (a)-[TAUGHT_BY]->(b)`
 ![alt tag](http://image.prntscr.com/image/579a8540adbb4853903fb4e19aa32978.png)
+
 *When the Module Lecturer property contains a lecturers name, create a relationship*
 ##### Lecturer
 The Lecturer Node represents the Lecturers, and are connected to the module that they teach. Each lecturer has a `name` property.
